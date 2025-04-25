@@ -1,0 +1,46 @@
+Join Maltiple Table:- to get data from multiple tables.
+aggregate():- functionsis used to fetch the data from multiple collection.
+syntax:-
+db.mastercollectionname.aggregate
+([{$lookup:{from:'childcollectionname',
+localField:'commonfieldname;
+foreignField:'commonfieldname',
+as:'outputlistname'}}]);
+
+//                               commands:-- 14/04/2025
+
+
+
+// show collection;
+// db.createCollection("branch");
+// db.createCollection("student");
+// show collection;
+
+
+// db.student.drop();
+// show collection;
+// db.createCollection("student");
+// show collection;
+// db.student.find();
+// db.branch.find();
+// db.branch.insertMany([{"bcode":1,"bname":"CS"},{"bcode":2,"bname":"IT"},{"bcode":3,"bname":"EC"},
+// {"bcode":4,"bname":"Civil"},{"bcode":5,"bname":"Mech"}])
+
+// db.student.insertMany([
+//     {"rno":101,"sname":"amit","marks":400,"bcode":2},
+//     {"rno":102,"sname":"sumit","marks":420,"bcode":1},
+//     {"rno":103,"sname":"rajat","marks":410,"bcode":5},
+//     {"rno":104,"sname":"maya","marks":120,"bcode":5},
+//     {"rno":105,"sname":"jaya","marks":320,"bcode":4},
+//     {"rno":106,"sname":"pooja","marks":455,"bcode":2},
+//     {"rno":107,"sname":"jayesh","marks":380,"bcode":2},
+//     {"rno":108,"sname":"raj","marks":255,"bcode":1},
+//     {"rno":109,"sname":"rajesh","marks":285,"bcode":3},
+//     {"rno":110,"sname":"priya","marks":369,"bcode":1},
+// ]);
+
+db.branch.find();
+db.student.find();
+db.branch.aggregate([{$lookup;{from:'student',localField:'bcode',foreignField:bcode,as:'stubralist'}}]);
+
+db.branch.aggregate([{$lookup;{from:'student',localField:'bcode',foreignField:bcode,as:'stubralist'}},{$project:{'_id':0,'bname':1,'stubralist.rno':1,'stubralist.sname':1,'stubralist.marks':1}}]);
