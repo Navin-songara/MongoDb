@@ -1,0 +1,77 @@
+Database : collection of data and functions 
+DBMS:- manuplate data and scehma database management system 
+Table/collection:- Store data 
+Sql:- structured query language mysql,sql server base dbms .
+
+                            MONGODB
+                            
+MongoDB : document based database managment system . (DBMS).used to store data 
+and manuplate data. mangodb manage data in document in BSON format . BSON stands for binary
+script object notation , it is advance of JSON . it manage data in compressed format.
+mangodb is no :- sql database . sql-structure query language , manuplate data on the basis 
+of predefined schema.
+no sql:- not depend on predefined schema, as or requirement we can manuplate data.
+schema free database.
+
+Installation => google => install MangoDB on windows 64 bits
+install Mango Db using MSIexe.exe,
+
+
+            MONGODB COMMANDS 
+
+* Create Database - data base is collection of tables / collection .
+    >use database name;
+* Display database- 
+    >show dbs;
+*Create table or collection:-
+    > db.createCollection("collectionname");
+*Show Collections- used to display tables.
+    >db.showcollections;
+*SaveData in table :-
+    >insert():-used to store sata in table.
+    >db.collection.insert
+
+    ({"columnname":values,------});
+
+*InsertMany():- used to store multiple data in table.
+    >db.collectionname.insertMany
+    ([{"columnname":Values,------}]);
+
+*insertOne():-used to store single record in table. insert() method is depricated now.
+
+*MONGODB provides new Method to store single record .
+    >db.collectionname.insertOne
+        ({"columnname0":Values,-----});
+*find():used to display all records form table/collection.
+    >db.collectionname.find();
+
+*findOne():- used to display specific or single record from collection.
+        >db.collectionname.findOne.
+        ({"searchingcolumnname":value.});
+
+<!-- Update specific  data & remaining null if not passed. -->
+
+*find And Modify():- Used to update a record.
+
+    >db.collectionname.findAndmodify
+    ({query;{"Searchingcolumnname":Value};update:{"columnsanem":value,--}}) // may be wrong
+
+<!-- Update specific field and remaining same / old value. -->
+
+    >db.collectionname.updateOne
+    ({"comparefieldname":value})
+    {&set:{"updatecolumnname:"new value"}}
+
+*delete One():- used to delete record form table/collection 
+    >db.collection.deleteOne
+    ({"searching columnname":Value});
+
+<!--JOIN MULTIPLES  TABLE -->
+
+To get data from multiple tables.
+
+*Aggregate-- functionj is used to fetch the data from multiple collection.
+
+*Syntax-- 
+
+db.mastercollectionname.aggregate,([{$lookup:<form:childcollectionname,localfield:'commanfieldname',foreignfield:'commonfield name', as : 'output listname}'}}]);
