@@ -1,0 +1,36 @@
+capped collection:-
+
+automatically remove old record after given data size . size is always required.we can set max
+for number of records if no.of record exceed automatically remove old one.
+1.size based>
+
+>db.createCollection("emp1,{capped:true,size:5})
+
+2.no.of record based 
+
+>db.createCollection("emp2",{capped:true,size:5,max:2})
+Check if a collection is Capped or not
+
+>db.emp2.isCapped()
+Convert a existing collection to capped
+>db.runCommand({"convertToCapped"."student",size:5,max:3})
+
+-------------------------------------------X----------------------------------------------
+            Indexing :- Used to fast searching processk. it will create a reference table and when we search a record it will find out record fast.it search in reference table .
+1.Index on single field
+>db.emp.createIndex({"ecode":1})
+2.Index on multiple field
+>db.emp.createIndex({"ecode":1,"ename":1})
+3.GetIndex Details
+>db.emp.getIndexes()
+4.Drop Single Field Index
+>db.emp.dropIndex({"ecode":1})
+5.Drop Multiple Fields Index
+>db.emp.dropIndex({"ecode":1,"ename":1})      
+
+
+db.createCollection('emp",{capped:true,size;15})
+db.emp1.insert({"ecode":101."ename":"anjali","esal":3000});
+db.emp2.find();
+db.emp1.insert({"ecode":102."ename":"rahul","esal":2000});
+db.emp2.find();
