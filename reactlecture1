@@ -1,0 +1,83 @@
+                                    REACT JS
+
+React JS:- advance java script library/framework to develope client side application .
+React is Used to develope FrontEnd GUI.
+GUI stands for Graphical User Interface.
+React Js is used to Develope SPA.
+SPA :- single page application.onetime loading.
+React js is based on virtual DOM.
+it compare preloaded DOM and access only changed information form server and update client side. 
+SPA reduce network load and save time.
+in SPA application only required information will submit on server and return from server.
+SPA save page reloading time.
+React js is used to create dynamic component and Reusable component.
+component :- small part of web application. it support modular structure progrogramming .
+reactjs support asynchrnous programming .
+react js support oops concepts.
+types of component:- 
+1.class component
+2.function component 
+1.class component :- class and object based component.class component follow oops concepts.
+it is base technology for component development.
+syntax:- 
+import React from "react", // link library 
+import {Component} from "react";
+//componentName extends Component 
+{
+    //define data members or variables
+    //data members of a component are called as state.
+    construtor()
+    {
+        super(),//call base class construtor 
+        //define state 
+        this.state={variablename:initialvalue,-----}
+    }
+    //define function or event
+    eventName=(evt)=>
+    {
+        --
+        --
+    }
+    //define layout or design 
+    render()  //render function is used to define of webpage 
+    {
+        return(
+            --- jsx advance java script for designing 
+            --- we can define html inside the java script
+        );
+    }
+}expert default ComponentName;
+
+2.function component :- advance of class component.
+function component process fast as compare to class component.save.time,reduce code size.
+syntax:-
+import React,{useState}from "react";
+//useState :- is known as hook.and it provides functionality to define global variable or state in function component.
+function ComponentName()
+{
+    //define data member or state 
+    cons[variable,setVariableName]=useState();
+    --
+    --
+    //define event
+    const eventName=(evt)=>{
+        --
+        --
+    }
+    //define method
+    const functionName()=>{
+        -- --
+    }
+    //define layout
+    return(
+        --
+        --
+    );
+}expert default ComponentName;
+
+        install React JS
+    open terminal or command prompt
+>npm install create-react-app -g (run this command only one this-this is global or macine level installation)
+Then
+    create react application
+    >npx create-react-app application (run this command whenever you want to create new application)
