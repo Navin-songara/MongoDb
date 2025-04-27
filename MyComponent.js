@@ -1,60 +1,108 @@
-import React, { Component } from "react"; // Destructure Component directly from React
-import loadjs from "loadjs";
+// // example function component
+// import React,{useState} from "react";
 
-class MyComponent extends Component {
-    constructor() {
-        super();
-        this.state = { num1: "", num2: "", res: "" };
-    }
+// function MyComponent()
+// {
+//     const[num1,setNum1]=useState();
+//     const[num2,setNum2]=useState();
+//     const[res,setRes]=useState();
 
-    handleNum1TextChange = (evt) => {
-        this.setState({ num1: evt.target.value });
-    }
+//     const handleNum1Text=(evt)=>{
+//         setNum1(evt.target.value);
+//     }
+    
+//     const handleNum2Text=(evt)=>{
+//         setNum1(evt.target.value);
+//     }
+    
+//     const handleSumButton=()=>{
+//         setRes(parseInt(num1)+parseInt(num2));
+//     return(
+//         <div>
+//             <center>
+//                 <h4>My First Function Component</h4>
+//                 <table>
+//                     <tr>
+//                        <td>Enter First Number</td>
+//                         <td>
+//                             <input type="number" onChange={handleNum1Text}/>
+//                         </td> 
+//                     </tr>
+//                     <tr>
+//                        <td>Enter Second Number</td>
+//                         <td>
+//                             <input type="number" onChange={handleNum2Text}/>
+//                         </td> 
+//                     </tr>
+//                     <tr>
+//                        <td>Result</td>
+//                         <td>
+//                             <input type="text" value={res}/>
+//                         </td> 
+//                     </tr>
+//                     <td></td>
+//                     <td>
+//                         <button type="submit" onClick={handleSumButton}>Sum</button>
+//                     </td>
+//                 </table>
+//             </center>
+//         </div>
+//     )
+// };
+// }export default MyComponent;
 
-    handleNum2TextChange = (evt) => {
-        this.setState({ num2: evt.target.value });
-    }
+import React, { useState } from "react";
 
-    handleSumButtonClick = () => {
-        var c = parseInt(this.state.num1) + parseInt(this.state.num2);
-        this.setState({ res: c });
-    }
+function MyComponent() {
+    const [num1, setNum1] = useState('');
+    const [num2, setNum2] = useState('');
+    const [res, setRes] = useState('');
 
-    render() {
-        return (
-            <div style={{ backgroundColor: "gray", color: "white" }}>
-                <center>
-                    <h4>My First React app</h4>
-                    <table border={1}> {/* Fixed typo 'taable' to 'table' */}
-                        <tbody> {/* Added tbody to fix table structure */}
-                            <tr>
-                                <td>Enter my first Number</td>
-                                <td>
-                                    <input type="number" onChange={this.handleNum1TextChange} />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Enter my second Number</td> {/* Added second number input */}
-                                <td>
-                                    <input type="number" onChange={this.handleNum2TextChange} />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Result</td>
-                                <td>{this.state.res}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button type="button" onClick={this.handleSumButtonClick}>Sum</button> {/* Fixed typo in function name */}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </center>
-            </div>
-        );
-    }
-}
+    const handleNum1Text = (evt) => {
+        setNum1(evt.target.value);
+    };
 
-export default MyComponent;
+    const handleNum2Text = (evt) => {
+        setNum2(evt.target.value); // ✅ FIXED: was setNum1
+    };
+
+    const handleSumButton = () => {
+        setRes(parseInt(num1) + parseInt(num2));
+    };
+
+    return (
+        <div>
+            <center>
+                <h4>My First Function Component</h4>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Enter First Number</td>
+                            <td>
+                                <input type="number" onChange={handleNum1Text} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Enter Second Number</td>
+                            <td>
+                                <input type="number" onChange={handleNum2Text} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Result</td>
+                            <td>
+                                <input type="text" value={res} readOnly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" onClick={handleSumButton}>Sum</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+        </div>
+    );
+}export default MyComponent;
