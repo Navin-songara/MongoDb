@@ -1,82 +1,66 @@
-// import React,{userState} from "react";
-// import React from "react-dom/client";
-// import Details from "./Details";
-
-// function Student()
-// {
-//     const [name,setName]=userState();
-
-//     const handleNameText=(evt)=>{
-//         setName(evt.target.value);
-//     }
-//     const handleSubmit=()=>{
-//         const root=ReactDOM.createRoot(document.getElementById("root"));
-//         root.render(
-//             <Details ssname={name}/>
-//         );
-//     }
-//     return(
-//         <div>
-//             <center>
-//                 <h4>Props demo</h4>
-//                 <table>
-//                     <tr>
-//                         <td>Enter Name</td>
-//                         <td>
-//                             <input type="text" onChange={handleNameText}/>
-//                         </td>
-//                     </tr>
-//                     <tr>
-//                         <td></td>
-//                         <td>
-//                             <button type="submit" onClick={handleSubmit}>Submit</button>
-//                         </td>
-//                     </tr>
-//                 </table>
-//             </center>
-//         </div>
-//     );
-// }
-// export default Student;
-import React, { useState } from "react";
-import Details from "./Details";
-
-function Student() {
-    const [name, setName] = useState("");
-
-    const handleNameText = (evt) => {
-        setName(evt.target.value);
-    };
-
-    const handleSubmit = () => {
-        alert(`Name submitted: ${name}`);
-        // Or pass name to another component via props or routing instead of ReactDOM here
-    };
-
-    return (
+//Open terminal and run command >npm install axios --save
+/* axios inbuilt library it provides functions to connect backend application*/
+import React,{useState} from "react";
+import axios from "axios";
+function Student()
+{
+    const[picname,setPicName]=useState();
+    const[image,setImage]=useState({preview:",data:"})
+    const[status,setStatus]=useState('')
+    //handle file brows event
+    const handleFileChange =(evt)=>{
+        const img = {
+            preview: URL.createObjectURL(evt.target.files[0]),
+            data:evt.target.files[0]
+        }
+        //URL.createObjecctURL() inbluit function and is used to get the path of browsed image and display preview
+        setImage(img)
+        setPicName(evt.target.files[0].name);
+    }
+    //browse and save image code 
+    const handleSubmit = async (evt)=>{
+        evt.preventDefault()//avoid page refresh event
+        let formData = new FormData();//FromData inbuilt class and used to collect information or data of file to send server side
+        formData.append('file',image.data);
+        //fetch() function used to send data from client side to server side and also used to get data from server side to client side.fetch is promise based function.
+        const response=await fetch('http://localhost:5040/uploadimage',{
+            method:'POST',
+            body:formData
+        })
+        if(response){
+            setStatus("File Uploaded Successfully");
+        }else{
+            alert("Failed to Upload File");
+        }
+    }
+    return(
         <div>
             <center>
-                <h4>Props demo</h4>
-                <table>
-                    <tbody>
+                <form>
+                    <table>
                         <tr>
-                            <td>Enter Name</td>
+                            <td>Select Photo</td>
                             <td>
-                                <input type="text" onChange={handleNameText} />
+                                <input type="file" onChange={handleFileChange} name="file"/>
+                                <img src={image.preview} width='100' height='100'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Click to Upload File</td>
+                            <td>
+                                <button type="submit" onClick={handleSubmit}>Upload</button>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <button type="submit" onClick={handleSubmit}>Submit</button>
+                                {status&& <p>{status}</p>}
                             </td>
                         </tr>
-                    </tbody>
-                </table>
-                <Details ssname={name} />
+                    </table>
+                </form>
             </center>
         </div>
+        
     );
-}
-
-export default Student;
+}export default Student;
