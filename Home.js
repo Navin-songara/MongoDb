@@ -1,15 +1,15 @@
 import React from "react";
+import axios from "axios";
 
-function Home()
+function Home(props)
 {
     return(
         <div>
-            <div>React Routing Program</div>
-            <center>
-                <h4>Home Page</h4>
-                <p>welcome this is my home page</p>
-                <p>Universal Informatics Indore</p>
-            </center>
+            <h4>User Home Page</h4>
+            <p>Welcome {props.data.fullname}</p>
+            <p>
+                <img src={"http://localhost:9299/user/getimage/"+props.data.picname} height={100} width={100}/>
+            </p>
         </div>
     );
 }export default Home;
