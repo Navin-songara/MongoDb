@@ -1,66 +1,137 @@
-//Open terminal and run command >npm install axios --save
-/* axios inbuilt library it provides functions to connect backend application*/
-import React,{useState} from "react";
-import axios from "axios";
-function Student()
-{
-    const[picname,setPicName]=useState();
-    const[image,setImage]=useState({preview:",data:"})
-    const[status,setStatus]=useState('')
-    //handle file brows event
-    const handleFileChange =(evt)=>{
-        const img = {
-            preview: URL.createObjectURL(evt.target.files[0]),
-            data:evt.target.files[0]
+// import React,{useState} from "react";
+
+// function Student()
+// {
+//     const [token,setToken]=useState();
+//     const[tokenauthresult,setTokenAuthResult]=useState();
+//     const handleGenerateTokenButton=async()=>{
+
+
+//         const response=await fetch('http://localhost:5678/user/generateToken',{
+//             method:'POST',
+//             headers:{
+//                 'Content-Type':'application/json',
+//             },
+//             body:JSON.stringify({ username:'admin', password:'admin123'}),
+//              });
+
+//              const data=await response.json();
+
+//              if(response.ok){
+//                 setToken(data.token);
+//                 //Save the token in client-side storage (e.g., local storage or a cokie)
+//                 localStorage.setItem('token',data.token)
+//              }else{
+//                 alert(data.error)
+//              }
+//              alert(token)
+//     }
+//     const handleAuthenticate=async()=>{
+//         alert("pass token:-"+token)
+//         const response=await fetch('http://localhost:5678/user/validateToken',{
+//             method:"GET",
+//             headers:{
+//                 'Content-Type':'application/json',
+//                 Authorization:Bearer ${token}
+//             },
+            
+//         });
+//         //alert(response.data)
+//         if(response.ok){
+//             const data=await response.json();
+//             alert(data.messege);
+//             setTokenAuthResult(data.messege);
+
+//         }else{
+//             alert('Unauthorized');
+//         }
+//     };
+//     return(
+//         <div>
+//             <center>
+//                 <h4>JWT Authentication DEMO</h4>
+//                 <button type="submit"  onClick={handleGenerateTokenButton}>Generate Token</button>
+
+//                 <button type="submit"  onClick={handleAuthenticate}>Authenticate</button>
+//                 <p>
+//                     <label>{token}</label>
+//                 </p>
+//                 <p>
+//                     <label>{tokenauthresult}</label>
+//                 </p>
+//             </center>
+//         </div>
+
+//     )
+// }export default Student;
+
+
+import React, { useState } from "react";
+
+function Student() {
+    const [token, setToken] = useState();
+    const [tokenAuthResult, setTokenAuthResult] = useState();
+
+    const handleGenerateTokenButton = async () => {
+        try {
+            const response = await fetch('http://localhost:5678/user/generateToken', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: 'admin', password: 'admin123' }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setToken(data.token);
+                localStorage.setItem('token', data.token);
+                alert('Token generated successfully');
+            } else {
+                alert(data.error || 'Token generation failed');
+            }
+        } catch (error) {
+            alert('Error: ' + error.message);
         }
-        //URL.createObjecctURL() inbluit function and is used to get the path of browsed image and display preview
-        setImage(img)
-        setPicName(evt.target.files[0].name);
-    }
-    //browse and save image code 
-    const handleSubmit = async (evt)=>{
-        evt.preventDefault()//avoid page refresh event
-        let formData = new FormData();//FromData inbuilt class and used to collect information or data of file to send server side
-        formData.append('file',image.data);
-        //fetch() function used to send data from client side to server side and also used to get data from server side to client side.fetch is promise based function.
-        const response=await fetch('http://localhost:5040/uploadimage',{
-            method:'POST',
-            body:formData
-        })
-        if(response){
-            setStatus("File Uploaded Successfully");
-        }else{
-            alert("Failed to Upload File");
+    };
+
+    const handleAuthenticate = async () => {
+        try {
+            const storedToken = localStorage.getItem('token') || token;
+            alert("Pass token: " + storedToken);
+
+            const response = await fetch('http://localhost:5678/user/validateToken', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${storedToken}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+                setTokenAuthResult(data.message);
+            } else {
+                alert('Unauthorized');
+            }
+        } catch (error) {
+            alert('Error: ' + error.message);
         }
-    }
-    return(
+    };
+
+    return (
         <div>
             <center>
-                <form>
-                    <table>
-                        <tr>
-                            <td>Select Photo</td>
-                            <td>
-                                <input type="file" onChange={handleFileChange} name="file"/>
-                                <img src={image.preview} width='100' height='100'/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Click to Upload File</td>
-                            <td>
-                                <button type="submit" onClick={handleSubmit}>Upload</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                {status&& <p>{status}</p>}
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+                <h4>JWT Authorization Demo</h4>
+                <button onClick={handleGenerateTokenButton}>Generate Token</button>
+                <button onClick={handleAuthenticate}>Validate Token</button>
+                <p><label>Token: {token}</label></p>
+                <p><label>Validation Result: {tokenAuthResult}</label></p>
             </center>
         </div>
-        
     );
-}export default Student;
+}
+
+export default Student;
