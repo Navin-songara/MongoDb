@@ -2,11 +2,11 @@ const express=require('express');
 const app=express();
 const bodyParser=require('body-parser');
 const PORT=9299;
-const cors=require('cors');
+// const cors=require('cors');
 const mongoose=require('mongoose');
 const config=require('./DB');
 const userRoute=require('./user.route');
-
+const cors=require('cors);
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
