@@ -4,6 +4,7 @@ function Bill(props)
     var total=0;
     return(
         <div>
+        // BIll id 
             <center>
                 <h4 style={{backgroundColor:"green"}}>Bill</h4>
                 <table border={1}>
