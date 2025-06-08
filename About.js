@@ -1,5 +1,5 @@
 import React from "react";
-
+// creating home [age
 function About()
 {
     return(
