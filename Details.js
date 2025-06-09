@@ -9,6 +9,7 @@ function Details(props)
         <div>
             <center>
                 <h4>Welcome {props.ssname}</h4>
+        //Welcome page
             </center>
         </div>
     );
