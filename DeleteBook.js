@@ -1,5 +1,6 @@
 import React,{useState}from "react";
 import axios from "axios";
+// this code show how to delete any things in page
 function DeleteBook()
 {
     const[BId,setBId]=useState();
