@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+//Home page
 function Home(props)
 {
     return(
