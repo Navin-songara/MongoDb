@@ -5,7 +5,7 @@ import aap from"./images/aap.jpg";
 import congress from"./images/congress.png";
 import bjp from"./images/bjp.jpg";
 import ecomm  from"./images/ecom.png";
-
+// voting machine 
 function EVM()
 {
     const[bjpcounter,setBjpcounter]=useState(0);
