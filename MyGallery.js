@@ -1,3 +1,4 @@
+// Gallery
 import React,{useState} from "react";
 import rohit from "./images/rohit.jpg";
 import jadeja from "./images/jadeja.jpg";
