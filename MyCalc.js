@@ -286,6 +286,7 @@
 
 // export default MyCalc;
  
+// my calculator 
 
 import React, { useState } from "react";
 
