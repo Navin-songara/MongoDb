@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-
+//Prime Component by using Loop
 function PrimeComponent()
 {
     const[num,setNum]=useState();
