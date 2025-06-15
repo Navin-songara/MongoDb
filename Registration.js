@@ -1,3 +1,4 @@
+// User id , photo etc
 import React,{useState} from 'react';
 import axios from 'axios';
 function Registration()
