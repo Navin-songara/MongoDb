@@ -1,3 +1,4 @@
+// Product List with image
 import React,{ useState } from "react"
 import tv from "./images/tv.jpg";
 import ac from "./images/ac.jpg";
