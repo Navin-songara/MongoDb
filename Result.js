@@ -1,5 +1,5 @@
 // npm install react-blink-text --save --force
-
+// Election button direct result show
 import React from "react";
 import ecomm from "./images/ecom.png";
 import Blink from "react-blink-text";
