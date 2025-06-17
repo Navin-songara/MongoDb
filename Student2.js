@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import ReactDOM from "react-dom/client"
 import Details2 from "./Details2";
-
+//Student 2
 function Student2()
 {
     const [rno,setRno]=useState();
