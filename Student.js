@@ -67,7 +67,7 @@
 
 
 import React, { useState } from "react";
-
+//student function
 function Student() {
     const [token, setToken] = useState();
     const [tokenAuthResult, setTokenAuthResult] = useState();
