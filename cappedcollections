@@ -1,3 +1,4 @@
+//detials
 capped collection:-
 
 automatically remove old record after given data size . size is always required.we can set max
