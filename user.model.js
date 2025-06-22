@@ -1,3 +1,4 @@
+//User model
 var mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 var User=new Schema({
