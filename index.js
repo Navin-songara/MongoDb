@@ -1,7 +1,7 @@
 // npm install multer --save : multer library provides function to upload file from client to server,
 // it provides function to store file at server.
 // image/file uploading and downloading from client to server
-
+//index.js
 // Import required modules
 const fs = require('fs');   // File system module for file operations
 const express = require('express'); // Express framework for creating the server
