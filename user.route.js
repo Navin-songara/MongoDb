@@ -1,3 +1,4 @@
+//user route
 const express =require('express');
 const userRoute=express.Router();
 const multer=require("multer");
